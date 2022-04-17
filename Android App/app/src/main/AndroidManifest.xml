@@ -24,10 +24,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TestApp">
+        <activity
+            android:name=".ThreadControlActivity"
+            android:exported="false" />
+
         <service
-            android:name="com.example.testapp.BluetoothLeService"
+            android:name=".BluetoothLeService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity
             android:name=".GattActivity"

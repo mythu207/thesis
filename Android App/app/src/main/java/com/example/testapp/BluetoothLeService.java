@@ -34,8 +34,7 @@ public class BluetoothLeService extends Service {
     private BluetoothAdapter bluetoothAdapter;
     private BluetoothGatt bluetoothGatt;
 
-    public ArrayList<String> threadDeviceAddressList;
-    public int numberOfThreadDevice = 0;
+
 
     private static BluetoothGattCharacteristic mRxCharacteristic;
     private static BluetoothGattCharacteristic mTxCharacteristic;
@@ -52,6 +51,10 @@ public class BluetoothLeService extends Service {
             "com.example.bluetooth.le.ACTION_DATA_AVAILABLE";
     public final static String EXTRA_DATA =
             "com.example.bluetooth.le.EXTRA_DATA";
+    public final static String EXTRA_ADDRESS =
+            "com.example.bluetooth.le.EXTRA_ADDRESS";
+    public final static String EXTRA_NUMBER_OF_DEVICES =
+            "com.example.bluetooth.le.EXTRA_NUMBER_OF_DEVICES";
 
     public final static UUID UUID_HEART_RATE_MEASUREMENT =
             UUID.fromString(SampleGattAttributes.HEART_RATE_MEASUREMENT);
@@ -207,14 +210,19 @@ public class BluetoothLeService extends Service {
                     }
 
                 }
-                intent.putExtra(EXTRA_DATA, new String(data) + "\n" +
-                        stringBuilder.toString());
+                //intent.putExtra(EXTRA_DATA, new String(data) + "\n" +
+                //        stringBuilder.toString());
+
                 if(data.length == 16){
-                    threadDeviceAddressList.add(stringBuilder.toString());
+                    //threadDeviceAddressList.add(stringBuilder.toString());
+                    intent.putExtra(EXTRA_ADDRESS, stringBuilder.toString());
                 }
                 else{
-                    numberOfThreadDevice = Integer.parseInt(String.format("%02X", data[0]),16);
+                    //numberOfThreadDevice = Integer.parseInt(String.format("%02X", data[0]),16);
+                    intent.putExtra(EXTRA_NUMBER_OF_DEVICES, Integer.parseInt(String.format("%02X", data[0]),16));
                 }
+
+
 
             }
         }
@@ -292,15 +300,21 @@ public class BluetoothLeService extends Service {
                     new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
         }
         bluetoothGatt.setCharacteristicNotification(mTxCharacteristic, value);
-        threadDeviceAddressList = new ArrayList<String>();
+
+
         byte[] byteVal = new byte[1];
         if (value) {
-            byteVal[0] = 1;
+            //byteVal[0] = 1;
+            mTxCccd.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
         } else {
-            byteVal[0] = 0;
+            //byteVal[0] = 0;
+            mTxCccd.setValue(BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE);
         }
-        mTxCccd.setValue(byteVal);
-        bluetoothGatt.writeDescriptor(mTxCccd);
+
+        //bluetoothGatt.writeDescriptor(mTxCccd);
+        Log.d(TAG, "writeDescriptor: " + String.valueOf(bluetoothGatt.writeDescriptor(mTxCccd)));
+
+
     }
 
     private Binder binder = new LocalBinder();

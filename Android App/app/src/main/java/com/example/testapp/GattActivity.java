@@ -4,19 +4,26 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -34,8 +41,13 @@ public class GattActivity extends AppCompatActivity {
     String deviceAddress;
     Button btnSendDiscoverCommand;
 
+
     Switch switchNotify;
     ArrayList mGattCharacteristics;
+
+    ArrayAdapter<String> threadDeviceAdapter;
+    public ArrayList<String> threadDeviceAddressList;
+    public int numberOfThreadDevice = 0;
 
     private final String LIST_NAME = "NAME";
     private final String LIST_UUID = "UUID";
@@ -46,6 +58,8 @@ public class GattActivity extends AppCompatActivity {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             bluetoothService = ((BluetoothLeService.LocalBinder) service).getService();
+
+
             if (bluetoothService != null) {
                 // call functions on service to check connection and connect to devices
                 if (!bluetoothService.initialize()) {
@@ -94,7 +108,29 @@ public class GattActivity extends AppCompatActivity {
         btnSendDiscoverCommand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //bluetoothService.writeNotification(true);
                 bluetoothService.writeRxCharacteristic("discover");
+                threadDeviceAdapter = new ArrayAdapter<String>(GattActivity.this, android.R.layout.select_dialog_singlechoice);
+                threadDeviceAddressList = new ArrayList<String>();
+
+                AlertDialog.Builder builderSingle = new AlertDialog.Builder(GattActivity.this);
+                builderSingle.setTitle("Thread device list: ");
+                builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builderSingle.setAdapter(threadDeviceAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(GattActivity.this, ThreadControlActivity.class);
+                        intent.putExtra("deviceAddress", threadDeviceAddressList.get(which));
+                        startActivity(intent);
+                    }
+                });
+                builderSingle.show();
             }
         });
 
@@ -115,11 +151,18 @@ public class GattActivity extends AppCompatActivity {
                 // Show all the supported services and characteristics on the user interface.
                 updateConnectionState("ACTION_GATT_SERVICES_DISCOVERED");
                 displayGattServices(bluetoothService.getSupportedGattServices());
-                Log.d("Thu", "readCharacteristics: ");
+                Log.d(TAG, "readCharacteristics: ");
                 bluetoothService.readCharacteristic(mGattCharacteristics);
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)){
                 updateConnectionState("ACTION_DATA_AVAILABLE");
-                Log.d("Thu", "gattUpdateReceiver: " + intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
+                if(intent.getExtras().containsKey(BluetoothLeService.EXTRA_ADDRESS)){
+                    Log.i(TAG, intent.getStringExtra(BluetoothLeService.EXTRA_ADDRESS));
+                    threadDeviceAddressList.add(intent.getStringExtra(BluetoothLeService.EXTRA_ADDRESS));
+                    threadDeviceAdapter.add(intent.getStringExtra(BluetoothLeService.EXTRA_ADDRESS));
+                }
+                else if(intent.getExtras().containsKey(BluetoothLeService.EXTRA_NUMBER_OF_DEVICES)){
+                    Log.i(TAG, "There is/are " + intent.getIntExtra(BluetoothLeService.EXTRA_NUMBER_OF_DEVICES,-1) +" Thread device(s) found");
+                }
             }
             else {
                 updateConnectionState(action);
