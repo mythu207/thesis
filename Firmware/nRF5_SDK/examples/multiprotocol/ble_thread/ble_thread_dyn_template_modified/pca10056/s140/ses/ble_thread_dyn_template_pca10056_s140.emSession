@@ -1,0 +1,62 @@
+<!DOCTYPE CrossStudio_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints groups="Breakpoints" active_group="Breakpoints">
+  <BreakpointListItem trigger="" line="12115" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="2" filename="../config/sdk_config.h" useHWbreakpoint="false"/>
+ </Breakpoints>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow bufferHeight="-1" addressSpace="" addressText="" bufferWidth="-1"/>
+ </FrameBufferWindow>
+ <Memory1/>
+ <Memory2/>
+ <Memory3/>
+ <Memory4/>
+ <Project>
+  <ProjectSessionItem path="ble_thread_dyn_template_pca10056_s140"/>
+  <ProjectSessionItem path="ble_thread_dyn_template_pca10056_s140;ble_thread_dyn_template_pca10056_s140"/>
+  <ProjectSessionItem path="ble_thread_dyn_template_pca10056_s140;ble_thread_dyn_template_pca10056_s140;Application"/>
+  <ProjectSessionItem path="ble_thread_dyn_template_pca10056_s140;ble_thread_dyn_template_pca10056_s140;Board Definition"/>
+  <ProjectSessionItem path="ble_thread_dyn_template_pca10056_s140;ble_thread_dyn_template_pca10056_s140;home_apps"/>
+  <ProjectSessionItem path="ble_thread_dyn_template_pca10056_s140;ble_thread_dyn_template_pca10056_s140;nRF_SoftDevice"/>
+  <ProjectSessionItem path="ble_thread_dyn_template_pca10056_s140;ble_thread_dyn_template_pca10056_s140;nRF_Thread"/>
+  <ProjectSessionItem path="ble_thread_dyn_template_pca10056_s140;ble_thread_dyn_template_pca10056_s140;sensor_drivers"/>
+ </Project>
+ <Register1/>
+ <Register2/>
+ <Register3/>
+ <Register4/>
+ <Threads>
+  <ThreadsWindow showLists=""/>
+ </Threads>
+ <TraceWindow>
+  <Trace enabled="Yes"/>
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never"/>
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never"/>
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never"/>
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never"/>
+ </Watch4>
+ <Files>
+  <SessionOpenFile windowGroup="DockEditLeft" x="32" y="184" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="173" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="12064" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="1" top="12077" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="20" y="5" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../ble_main.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="38" y="1" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../openthread_main.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="30" y="10" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../../components/home_apps/lighting_control/ble_lc_forwarder_service.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="30" y="10" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../../components/home_apps/lighting_control/ble_lighting_control_service.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="8" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../../components/home_apps/lighting_control/lc_string_handling.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="39" y="9" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../../components/home_apps/lighting_control/lighting_control.c" selected="0" top="6" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="67" y="74" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../../components/home_apps/lighting_control/thread_coap_lc_forwarder_utils.c" selected="0" top="39" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="25" y="30" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../../components/home_apps/lighting_control/ble_lighting_control_service.h" selected="0" top="12" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="65" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../openthread_main.h" selected="0" top="54" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="50" y="31" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../../components/home_apps/lighting_control/ble_lc_forwarder_service.h" selected="0" top="1" codecName="Default"/>
+ </Files>
+ <ARMCrossStudioWindow activeProject="ble_thread_dyn_template_pca10056_s140" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="D:/nRF5_SDK/components/thread/mqtt_sn/mqtt_sn_client" debugSearchPath="" autoConnectCapabilities="3199"/>
+</session>

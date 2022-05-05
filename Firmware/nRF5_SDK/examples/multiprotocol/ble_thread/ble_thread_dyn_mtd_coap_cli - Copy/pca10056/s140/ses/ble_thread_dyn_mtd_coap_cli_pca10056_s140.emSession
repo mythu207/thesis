@@ -1,0 +1,50 @@
+<!DOCTYPE CrossStudio_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints groups="Breakpoints" active_group="Breakpoints"/>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow bufferHeight="-1" addressSpace="" addressText="" bufferWidth="-1"/>
+ </FrameBufferWindow>
+ <Memory1/>
+ <Memory2/>
+ <Memory3/>
+ <Memory4/>
+ <Project>
+  <ProjectSessionItem path="ble_thread_dyn_mtd_coap_cli_pca10056_s140"/>
+  <ProjectSessionItem path="ble_thread_dyn_mtd_coap_cli_pca10056_s140;ble_thread_dyn_mtd_coap_cli_pca10056_s140"/>
+  <ProjectSessionItem path="ble_thread_dyn_mtd_coap_cli_pca10056_s140;ble_thread_dyn_mtd_coap_cli_pca10056_s140;Application"/>
+  <ProjectSessionItem path="ble_thread_dyn_mtd_coap_cli_pca10056_s140;ble_thread_dyn_mtd_coap_cli_pca10056_s140;nRF_BLE"/>
+  <ProjectSessionItem path="ble_thread_dyn_mtd_coap_cli_pca10056_s140;ble_thread_dyn_mtd_coap_cli_pca10056_s140;nRF_Thread"/>
+  <ProjectSessionItem path="ble_thread_dyn_mtd_coap_cli_pca10056_s140;ble_thread_dyn_mtd_coap_cli_pca10056_s140;OpenThread"/>
+ </Project>
+ <Register1/>
+ <Register2/>
+ <Register3/>
+ <Register4/>
+ <Threads>
+  <ThreadsWindow showLists=""/>
+ </Threads>
+ <TraceWindow>
+  <Trace enabled="Yes"/>
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never"/>
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never"/>
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never"/>
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never"/>
+ </Watch4>
+ <Files>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="739" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="127" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="20" y="656" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../thread/app_utils/thread_coap_utils.c" selected="1" top="681" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="37" y="81" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../../components/libraries/bsp/bsp_thread.c" selected="0" top="165" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="26" y="57" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../../components/ble/ble_services/ble_nus/ble_nus.c" selected="0" top="42" codecName="Default"/>
+ </Files>
+ <ARMCrossStudioWindow activeProject="ble_thread_dyn_mtd_coap_cli_pca10056_s140" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
+</session>
