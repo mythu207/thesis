@@ -36,7 +36,7 @@ import java.util.Set;
 
 public class GattActivity extends AppCompatActivity {
     String TAG = "BLEGattActivity";
-    private BluetoothLeService bluetoothService;
+    public static BluetoothLeService bluetoothService;
     boolean connected;
     String deviceAddress;
     Button btnSendDiscoverCommand;
