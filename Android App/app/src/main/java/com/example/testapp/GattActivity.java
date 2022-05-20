@@ -125,7 +125,7 @@ public class GattActivity extends AppCompatActivity {
                 builderSingle.setAdapter(threadDeviceAdapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(GattActivity.this, ThreadControlActivity.class);
+                        Intent intent = new Intent(GattActivity.this, ModeSelectActivity.class);
                         intent.putExtra("deviceAddress", threadDeviceAddressList.get(which));
                         startActivity(intent);
                     }

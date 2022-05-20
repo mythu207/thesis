@@ -68,14 +68,16 @@ static void fwd_data_handler(ble_fwd_evt_t * p_evt)
                 uint8_t * received_message = (uint8_t *) nrf_malloc((p_evt->params.rx_data.length+1)*sizeof(uint8_t));
 		char * token;
 		char * saveptr;
+                char * command;
 		
 		memset(received_message, 0, (p_evt->params.rx_data.length+1)*sizeof(uint8_t));
 		strncpy((char *)received_message, (char *)p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
 		
 		//If the receive payload message (not discover)
 		if (strcmp((char *)received_message, "discover") != 0)	{
-                    NRF_LOG_INFO("thread_coap_unicast_light_request_send()");
-                    token = strtok_r((char *)received_message, "_",&saveptr); 
+                    
+                    token = strtok_r((char *)received_message, "_",&saveptr);
+                    
                     thread_coap_unicast_light_request_send((uint8_t *)token, (uint8_t *)saveptr, strlen(saveptr));
 		} 
 		//If receive discover message

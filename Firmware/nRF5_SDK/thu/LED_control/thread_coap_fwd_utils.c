@@ -186,7 +186,7 @@ void thread_coap_unicast_light_request_send(const uint8_t *	peer_addr_string,
                                             const uint8_t *	message_to_send,
                                             int16_t 		length)
 {
-    NRF_LOG_INFO("Thu: thread_coap_utils_unicast_light_request_send()");
+   
     otError       error = OT_ERROR_NONE;
     otMessage   * p_request;
     otMessageInfo message_info;
@@ -218,7 +218,7 @@ void thread_coap_unicast_light_request_send(const uint8_t *	peer_addr_string,
       error = otCoapMessageSetPayloadMarker(p_request);
       ASSERT(error == OT_ERROR_NONE);
 
-      error = otMessageAppend(p_request, &message_to_send, sizeof(message_to_send));
+      error = otMessageAppend(p_request, message_to_send, sizeof(message_to_send));
       if(error != OT_ERROR_NONE)
       {
         break;

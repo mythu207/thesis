@@ -55,6 +55,8 @@ public class BluetoothLeService extends Service {
             "com.example.bluetooth.le.EXTRA_ADDRESS";
     public final static String EXTRA_NUMBER_OF_DEVICES =
             "com.example.bluetooth.le.EXTRA_NUMBER_OF_DEVICES";
+    public final static String EXTRA_PACKETS =
+            "com.example.bluetooth.le.EXTRA_PACKETS";
 
     public final static UUID UUID_HEART_RATE_MEASUREMENT =
             UUID.fromString(SampleGattAttributes.HEART_RATE_MEASUREMENT);
@@ -201,7 +203,7 @@ public class BluetoothLeService extends Service {
         } else {
             // For all other profiles, writes the data formatted in HEX.
             final byte[] data = characteristic.getValue();
-            if (data != null && data.length > 0) {
+            if (data != null && data.length > 5) {
                 final StringBuilder stringBuilder = new StringBuilder(data.length);
                 for (int byteIndex = 0; byteIndex < data.length; byteIndex++){
                     stringBuilder.append(String.format("%02X", data[byteIndex]));
@@ -221,9 +223,9 @@ public class BluetoothLeService extends Service {
                     //numberOfThreadDevice = Integer.parseInt(String.format("%02X", data[0]),16);
                     intent.putExtra(EXTRA_NUMBER_OF_DEVICES, Integer.parseInt(String.format("%02X", data[0]),16));
                 }
-
-
-
+            }
+            else if(data != null && data.length == 1){
+                intent.putExtra(EXTRA_PACKETS, data.toString());
             }
         }
         sendBroadcast(intent);

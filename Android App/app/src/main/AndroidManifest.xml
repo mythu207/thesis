@@ -25,7 +25,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestApp">
         <activity
-            android:name=".ThreadControlActivity"
+            android:name=".ModeSelectActivity"
             android:exported="false" />
 
         <service

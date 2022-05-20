@@ -21,6 +21,7 @@ thread_coap_fwd_utils_configuration_t   m_config;
 
 static bool thread_discover_in_progress = false;
 uint16_t discovered_count;
+int packages_count = 0;
 
 static uint8_t receivedMessage[THREAD_COAP_MAX_LENGTH_OF_MESSAGE];
 static uint16_t receivedMessageLength;
@@ -202,8 +203,28 @@ static void light_request_handler(void                * p_context,
         {
             NRF_LOG_INFO("light handler - missing command\r\n");
         }
+        else{
+            NRF_LOG_INFO("%d", command);
+            if(command == '1'){
+               packages_count = 0; 
+               NRF_LOG_INFO("Start testing mode"); 
+            }
+            else if(command == '2'){
+               packages_count++;
+               m_light_command_handler(THREAD_COAP_UTILS_LIGHT_CMD_TOGGLE);
+                NRF_LOG_INFO("Toggle LED: %d", packages_count);
+            }
+            else if(command == '3'){
+              NRF_LOG_INFO("End testing mode, PRR = %d %%", packages_count);
+            }
+            else{
+              NRF_LOG_INFO("None");
+              m_light_command_handler(THREAD_COAP_UTILS_LIGHT_CMD_TOGGLE);
+            }
 
-        m_light_command_handler(THREAD_COAP_UTILS_LIGHT_CMD_TOGGLE);
+        }
+
+        
 
   }while(false);
 }
@@ -277,6 +298,7 @@ static void light_changed_default(thread_coap_utils_light_command_t light_comman
         case THREAD_COAP_UTILS_LIGHT_CMD_TOGGLE:
             LEDS_INVERT(BSP_LED_3_MASK);
             LEDS_INVERT(BSP_LED_4_MASK);
+
             break;
 
         default:
