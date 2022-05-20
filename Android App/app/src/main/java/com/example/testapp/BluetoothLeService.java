@@ -49,6 +49,7 @@ public class BluetoothLeService extends Service {
             "com.example.bluetooth.le.ACTION_GATT_SERVICES_DISCOVERED";
     public final static String ACTION_DATA_AVAILABLE =
             "com.example.bluetooth.le.ACTION_DATA_AVAILABLE";
+
     public final static String EXTRA_DATA =
             "com.example.bluetooth.le.EXTRA_DATA";
     public final static String EXTRA_ADDRESS =
@@ -203,7 +204,7 @@ public class BluetoothLeService extends Service {
         } else {
             // For all other profiles, writes the data formatted in HEX.
             final byte[] data = characteristic.getValue();
-            if (data != null && data.length > 5) {
+            if (data != null && data.length > 0) {
                 final StringBuilder stringBuilder = new StringBuilder(data.length);
                 for (int byteIndex = 0; byteIndex < data.length; byteIndex++){
                     stringBuilder.append(String.format("%02X", data[byteIndex]));
@@ -224,9 +225,7 @@ public class BluetoothLeService extends Service {
                     intent.putExtra(EXTRA_NUMBER_OF_DEVICES, Integer.parseInt(String.format("%02X", data[0]),16));
                 }
             }
-            else if(data != null && data.length == 1){
-                intent.putExtra(EXTRA_PACKETS, data.toString());
-            }
+
         }
         sendBroadcast(intent);
     }

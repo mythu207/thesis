@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -53,20 +54,16 @@ public class ModeSelectActivity extends AppCompatActivity {
     }
     private void sendTestingPackages(){
         Timer timer = new Timer();
-        noSentPackages = 0;
+        noSentPackages = 1;
         noReceivedPackages = 0;
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if (noSentPackages == 0) {
-                    bluetoothService.writeRxCharacteristic(deviceAddress + "_" + "1");
+                if (noSentPackages < 101) {
+                    bluetoothService.writeRxCharacteristic(deviceAddress + "_" + "A");
                     Log.i("ModeSelectActivity", "start");
-                } else if (noSentPackages < 101) {
-                    bluetoothService.writeRxCharacteristic(deviceAddress + "_" + "2");
-                    Log.i("ModeSelectActivity", "toggle " + noSentPackages);
-
-                } else {
-                    bluetoothService.writeRxCharacteristic(deviceAddress + "_" + "3");
+                }
+                else {
                     Log.i("ModeSelectActivity", "end");
                     timer.cancel();
 
@@ -77,37 +74,8 @@ public class ModeSelectActivity extends AppCompatActivity {
 
     }
     private void sendControlPackage() {
-        bluetoothService.writeRxCharacteristic(deviceAddress + "_" + "2");
+        bluetoothService.writeRxCharacteristic(deviceAddress + "_" + "B");
     }
 
-    private final BroadcastReceiver gattUpdateReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            final String action = intent.getAction();
-            if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)){
-                if(intent.getExtras().containsKey(BluetoothLeService.EXTRA_PACKETS)){
-                    noReceivedPackages++;
-                    Log.i(TAG, "Received Packet: " + noReceivedPackages);
-                }
-            }
 
-        }
-    };
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        registerReceiver(gattUpdateReceiver, makeGattUpdateIntentFilter());
-        if (bluetoothService != null) {
-            final boolean result = bluetoothService.connect(deviceAddress);
-            Log.d(TAG, "Connect request result=" + result);
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        unregisterReceiver(gattUpdateReceiver);
-    }
 }
