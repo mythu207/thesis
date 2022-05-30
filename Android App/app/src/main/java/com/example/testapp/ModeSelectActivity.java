@@ -29,6 +29,7 @@ public class ModeSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode_select);
+        setTitle("Thread Device Control");
         Intent intent = getIntent();
         if(null != intent){
             deviceAddress = intent.getStringExtra("deviceAddress");

@@ -27,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Switch;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class GattActivity extends AppCompatActivity {
     boolean connected;
     String deviceAddress;
     Button btnSendDiscoverCommand;
-
+    SeekBar chooseBleMode;
 
     Switch switchNotify;
     ArrayList mGattCharacteristics;
@@ -80,8 +81,10 @@ public class GattActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gatt);
+        setTitle("BLE Forwarder Control");
         btnSendDiscoverCommand = findViewById(R.id.btnSendDiscoverCommand);
         switchNotify = findViewById(R.id.notifySwitch);
+        chooseBleMode = findViewById(R.id.chooseBleMode);
 
         Intent intent = getIntent();
         if(null != intent){
@@ -90,6 +93,33 @@ public class GattActivity extends AppCompatActivity {
             bindService(gattServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
             registerReceiver(gattUpdateReceiver, makeGattUpdateIntentFilter());
         }
+
+        chooseBleMode.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                if (i == 2){
+                    bluetoothService.writeNotification(true);
+                    switchNotify.setVisibility(View.GONE);
+                    btnSendDiscoverCommand.setVisibility(View.VISIBLE);
+                }
+                else{
+                    bluetoothService.writeNotification(false);
+                    switchNotify.setVisibility(View.GONE);
+                    btnSendDiscoverCommand.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
         switchNotify.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {

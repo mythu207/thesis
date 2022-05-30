@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GattActivity">
+    tools:context=".GattActivity"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BLE Control"
+            android:layout_weight="3"
+            android:textSize="18dp"
+            android:textAlignment="viewEnd"></TextView>
+        <SeekBar
+            android:id="@+id/chooseBleMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:max="2"
+            android:min="1"
+            tools:layout_editor_absoluteX="41dp"
+            tools:layout_editor_absoluteY="229dp"
+            android:layout_weight="4"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BLE Forwarding"
+            android:layout_weight="3"
+            android:textSize="18dp"></TextView>
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnSendDiscoverCommand"
@@ -13,8 +43,8 @@
         android:layout_marginTop="28dp"
         android:text="Discover"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="146dp" />
-
+        tools:layout_editor_absoluteX="146dp"
+        android:visibility="gone"/>
 
 
     <Switch
@@ -22,7 +52,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Switch"
-        tools:layout_editor_absoluteX="91dp"
-        tools:layout_editor_absoluteY="172dp" />
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="49dp"
+        android:visibility="gone"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

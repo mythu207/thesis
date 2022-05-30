@@ -39,7 +39,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="626" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="690" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="626" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="691" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="1" y="11316" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="11294" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="13" y="794" useTextEdit="1" openedFrom="D:/nRF5_SDK/examples/multiprotocol/ble_thread/ble_thread_dyn_template/main.c" useBinaryEdit="0" left="0" path="../../../../../../../components/ble/ble_advertising/ble_advertising.c" selected="0" top="786" codecName="Default"/>
  </Files>
