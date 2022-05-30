@@ -56,6 +56,33 @@
         tools:layout_editor_absoluteY="49dp"
         android:visibility="gone"/>
 
+    <Button
+        android:id="@+id/btnSendLEDOnCommand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="LED ON"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="146dp"
+        android:visibility="visible"/>
+    <Button
+        android:id="@+id/btnSendLEDOffCommand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="LED OFF"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="146dp"
+        android:visibility="visible"/>
+    <Button
+        android:id="@+id/btnSendToggleLEDCommand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Toggle LED"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="146dp"
+        android:visibility="visible"/>
 
 
 </LinearLayout>

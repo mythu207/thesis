@@ -41,6 +41,10 @@ public class GattActivity extends AppCompatActivity {
     boolean connected;
     String deviceAddress;
     Button btnSendDiscoverCommand;
+    Button btnSendToggleLEDCommand;
+    Button btnSendLEDOnCommand;
+    Button btnSendLEDOffCommand;
+
     SeekBar chooseBleMode;
 
     Switch switchNotify;
@@ -85,6 +89,9 @@ public class GattActivity extends AppCompatActivity {
         btnSendDiscoverCommand = findViewById(R.id.btnSendDiscoverCommand);
         switchNotify = findViewById(R.id.notifySwitch);
         chooseBleMode = findViewById(R.id.chooseBleMode);
+        btnSendToggleLEDCommand = findViewById(R.id.btnSendToggleLEDCommand);
+        btnSendLEDOnCommand = findViewById(R.id.btnSendLEDOnCommand);
+        btnSendLEDOffCommand = findViewById(R.id.btnSendLEDOffCommand);
 
         Intent intent = getIntent();
         if(null != intent){
@@ -101,16 +108,23 @@ public class GattActivity extends AppCompatActivity {
                     bluetoothService.writeNotification(true);
                     switchNotify.setVisibility(View.GONE);
                     btnSendDiscoverCommand.setVisibility(View.VISIBLE);
+                    btnSendLEDOnCommand.setVisibility(View.GONE);
+                    btnSendLEDOffCommand.setVisibility(View.GONE);
+                    btnSendToggleLEDCommand.setVisibility(View.GONE);
                 }
                 else{
                     bluetoothService.writeNotification(false);
                     switchNotify.setVisibility(View.GONE);
                     btnSendDiscoverCommand.setVisibility(View.GONE);
+                    btnSendToggleLEDCommand.setVisibility(View.VISIBLE);
+                    btnSendLEDOnCommand.setVisibility(View.VISIBLE);
+                    btnSendLEDOffCommand.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+
 
             }
 
@@ -163,6 +177,26 @@ public class GattActivity extends AppCompatActivity {
                 builderSingle.show();
             }
         });
+        btnSendToggleLEDCommand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bluetoothService.writeRxCharacteristic("toggle");
+
+            }
+        });
+        btnSendLEDOnCommand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bluetoothService.writeRxCharacteristic("on");
+            }
+        });
+        btnSendLEDOffCommand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bluetoothService.writeRxCharacteristic("off");
+            }
+        });
+
 
 
 
