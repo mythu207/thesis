@@ -42,7 +42,7 @@
  </Watch4>
  <Files>
   <SessionOpenFile windowGroup="DockEditLeft" x="4" y="221" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="124" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="1" y="183" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../thu/end_node_coap/thread_coap_fwd_utils.c" selected="1" top="187" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="1" y="183" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../thu/end_node_coap/thread_coap_fwd_utils.c" selected="1" top="193" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="34" y="26" useTextEdit="1" openedFrom="D:/nRF5_SDK/thu/end_node_coap/thread_coap_fwd_utils.c" useBinaryEdit="0" left="0" path="../../../../../../thu/end_node_coap/thread_coap_fwd_utils.h" selected="0" top="11" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="62" y="101" useTextEdit="1" openedFrom="D:/nRF5_SDK/examples/thread/fwd_coap_client/main.c" useBinaryEdit="0" left="0" path="../../../../../../components/boards/boards.h" selected="0" top="85" codecName="Default"/>
  </Files>

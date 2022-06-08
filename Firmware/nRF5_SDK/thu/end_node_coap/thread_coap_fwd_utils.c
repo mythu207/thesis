@@ -204,22 +204,17 @@ static void light_request_handler(void                * p_context,
             NRF_LOG_INFO("light handler - missing command\r\n");
         }
         else{
-            NRF_LOG_INFO("%d", command);
-            if(command == '1'){
-               packages_count = 0; 
-               NRF_LOG_INFO("Start testing mode"); 
-            }
-            else if(command == '2'){
+            if( command == 'A'){
                packages_count++;
                m_light_command_handler(THREAD_COAP_UTILS_LIGHT_CMD_TOGGLE);
-                NRF_LOG_INFO("Toggle LED: %d", packages_count);
             }
-            else if(command == '3'){
+            else if(command == 'B'){
               NRF_LOG_INFO("End testing mode, PRR = %d %%", packages_count);
+              packages_count = 0;
+              m_light_command_handler(THREAD_COAP_UTILS_LIGHT_CMD_TOGGLE);
             }
             else{
-              NRF_LOG_INFO("None");
-              m_light_command_handler(THREAD_COAP_UTILS_LIGHT_CMD_TOGGLE);
+             
             }
 
         }
