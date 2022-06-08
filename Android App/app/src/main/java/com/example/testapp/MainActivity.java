@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ParcelUuid;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -145,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
             bluetoothLeScanner.startScan(filters, settings, leScanCallback);
 
             //bluetoothLeScanner.startScan(leScanCallback);
+            Log.i("main","Start scanning");
         } else {
 
             scanning = false;
@@ -159,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onScanResult(int callbackType, ScanResult result) {
                     super.onScanResult(callbackType, result);
-
+                    Log.i("main", "scanning");
                     AddLeDeviceToArrayAdapter(arrayAdapter, result.getDevice(), result.getRssi());
                 }
             };

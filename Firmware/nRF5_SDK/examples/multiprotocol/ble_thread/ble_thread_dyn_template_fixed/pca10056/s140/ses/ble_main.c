@@ -73,18 +73,24 @@ static void fwd_data_handler(ble_fwd_evt_t * p_evt)
 		memset(received_message, 0, (p_evt->params.rx_data.length+1)*sizeof(uint8_t));
 		strncpy((char *)received_message, (char *)p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
 		
-		//If the receive payload message (not discover)
-		if (strcmp((char *)received_message, "discover") != 0)	{
-                    
-                    token = strtok_r((char *)received_message, "_",&saveptr);
-                    
-                    thread_coap_unicast_light_request_send((uint8_t *)token, (uint8_t *)saveptr, strlen(saveptr));
+		if (strcmp((char *)received_message, "discover") == 0)	{
+                    NRF_LOG_INFO("thread_coap_discover_start()");
+                    thread_coap_discover_start();
 		} 
-		//If receive discover message
-		else	{
-                     NRF_LOG_INFO("thread_coap_discover_start()");
-                     thread_coap_discover_start();
-		}
+                else if (strcmp((char *)received_message, "on") == 0){
+                    nrf_gpio_pin_clear(LED_3);
+                }
+                else if (strcmp((char *)received_message, "off") == 0){
+                    nrf_gpio_pin_set(LED_3);
+                }
+                else if (strcmp((char *)received_message, "toggle") == 0){
+                    nrf_gpio_pin_toggle(LED_3);
+                }
+                else{
+                    token = strtok_r((char *)received_message, "_",&saveptr);
+                    thread_coap_unicast_light_request_send((uint8_t *)token, (uint8_t *)saveptr, strlen(saveptr));
+                
+                }
 		nrf_free(received_message);
 	}
        
